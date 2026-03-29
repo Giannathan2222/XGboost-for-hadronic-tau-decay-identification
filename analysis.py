@@ -18,40 +18,23 @@ from sklearn.model_selection import train_test_split
 
 #loading the root file(s) containing mostly true taus
 
-filepath1 = r"C:\Users\Gianluigi\Documents\1lep1tau\1lep1tau\MC\mc_341123.ggH125_tautaulh.1lep1tau.root"
+filepath1 = filename
 file1 = uproot.open(filepath1)
 
-filepath2 = r"C:\Users\Gianluigi\Documents\1lep1tau\1lep1tau\MC\mc_361108.Ztautau.1lep1tau.root"
+filepath2 = filename
 file2 = uproot.open(filepath2)
 
-filepath4 = r"C:\Users\Gianluigi\Documents\1lep1tau\1lep1tau\MC\mc_364197.Wtaunu_PTV1000_E_CMS.1lep1tau.root"
-file4 = uproot.open(filepath4)
-
-filepath5 = r"C:\Users\Gianluigi\Documents\1lep1tau\1lep1tau\MC\mc_341156.VBFH125_tautaulh.1lep1tau.root"
-file5 = uproot.open(filepath5)
-
+#etc...
 
 #loading the root file(s) containing mostly fake taus
 
-filepath3 = r"C:\Users\Gianluigi\Documents\1lep1tau\1lep1tau\MC\mc_364156.Wmunu_PTV0_70_CVetoBVeto.1lep1tau.root"
+filepath3 = filename3
 file3 = uproot.open(filepath3)
 
-filepath6 = r"C:\Users\Gianluigi\Documents\1lep1tau\1lep1tau\MC\mc_361106.Zee.1lep1tau.root"
-file6 = uproot.open(filepath6)
+filepath4 = filename4
+file4 = uproot.open(filepath4)
 
-filepath7 = r"C:\Users\Gianluigi\Documents\1lep1tau\1lep1tau\MC\mc_363358.WqqZll.1lep1tau.root"
-file7 = uproot.open(filepath7)
-
-filepath8 = r"C:\Users\Gianluigi\Documents\1lep1tau\1lep1tau\MC\mc_410011.single_top_tchan.1lep1tau.root"
-file8 = uproot.open(filepath8)
-
-filepath9 = r"C:\Users\Gianluigi\Documents\1lep1tau\1lep1tau\MC\mc_363360.WplvWmqq.1lep1tau.root"
-file9 = uproot.open(filepath9)
-
-filepath10 = r"C:\Users\Gianluigi\Documents\1lep1tau\1lep1tau\MC\mc_410000.ttbar_lep.1lep1tau.root"
-file10 = uproot.open(filepath10)
-
-
+#etc...
 #discovering all possible tau variables
 
 branches = file1["mini"].keys()
@@ -81,12 +64,7 @@ Files = [
     filepath2,
     filepath3,
     filepath4,
-    filepath5,
-    filepath6,
-    filepath7,
-    filepath8,
-    filepath9,
-    filepath10
+   #etc..etc..(have as many as you need)
 ]
 
 arrays = []
@@ -188,8 +166,10 @@ model = xgb.train(
 #cross products to check that xgboost is consistent
 #build maks for other particle interactions
 #YOU WILL WANT TO EXPERIMENT WITH DIFFERENT "PROCESS NAMES" to see how results vary and which environment the xgboost peforms best in!
-train_processes = ["ttbar", "VBFH"]
-test_processes  = ["Ztautau", "Wmunu"]
+#by doing so you can effectively "stress test" your algorithm to see if even under extreme conditions (ie: training data containing almost no taus vs test data containing almost entirely taus)
+#>your algorithm will still be accurate
+train_processes = ["process_name1", "process_name2"] #etc
+test_processes  = ["process_name3", "process_name4"] #etc
 
 train_mask = np.isin(proc_labels, train_processes)
 test_mask  = np.isin(proc_labels, test_processes)
