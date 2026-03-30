@@ -51,13 +51,7 @@ process_names = [
     "Ztautau",
     "Wmunu",
     "Wtaunu",
-    "VBFH",
-    "Zee",
-    "WqqZll",
-    "singleTop",
-    "WplvWmqq",
-    "ttbar"
-]
+] #are some examples of particle interactions but these should refer to the files that you upload
 
 Files = [
     filepath1,
