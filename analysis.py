@@ -161,7 +161,7 @@ model = xgb.train(
 
 #########################################################
 #cross products to check that xgboost is consistent
-#build maks for other particle interactions
+#build masks for other particle interactions
 #YOU WILL WANT TO EXPERIMENT WITH DIFFERENT "PROCESS NAMES" to see how results vary and which environment the xgboost peforms best in!
 #by doing so you can effectively "stress test" your algorithm to see if even under extreme conditions (ie: training data containing almost no taus vs test data containing almost entirely taus)
 #>your algorithm will still be accurate
