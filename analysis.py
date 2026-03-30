@@ -112,9 +112,6 @@ y = y[mask]
 #########################################################################################################
 
 #double check for my own sanity
-
-print("Using features:", valid_tau_vars)
-
 print(np.unique(y))
 vals, counts = np.unique(y, return_counts=True)
 print(list(zip(vals, counts))) #checks how unbalanced dataset is (real taus vs fakes)
